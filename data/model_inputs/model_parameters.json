@@ -1,0 +1,166 @@
+{
+ "description": "Model definition for the R2R web-line simulator: physics constants, the plant characteristics of the ten-plant pool, the state-matrix structure, and the cascade controller settings.",
+ "physics": {
+  "equations": {
+   "web_tension_ode": "dTi/dt = EA/L * (vi - v(i-1)) + 1/L * (T(i-1)*v(i-1) - Ti*vi)",
+   "roller_dynamics": "dvi/dt = R^2/J * (T(i+1) - Ti) - f/J * vi + R/J * ui"
+  },
+  "parameters": {
+   "EA_N": {
+    "range": [
+     480.0,
+     12000.0
+    ],
+    "display": "0.48-12 kN",
+    "status": "Included"
+   },
+   "J_kg_m2": {
+    "range": [
+     0.01,
+     1.0
+    ],
+    "display": "0.01-1.0 kg*m^2",
+    "status": "Included"
+   },
+   "b_process_noise": {
+    "range": [
+     0.0,
+     0.1
+    ],
+    "display": "0-0.1",
+    "status": "Included"
+   },
+   "f_viscous": {
+    "range": [
+     0.01,
+     0.5
+    ],
+    "display": "0.01-0.5",
+    "status": "Simplified"
+   },
+   "R_m": {
+    "range": [
+     0.05,
+     0.15
+    ],
+    "display": "0.05-0.15 m",
+    "status": "Simplified"
+   }
+  }
+ },
+ "plant_characteristics": {
+  "description": "Closed-loop damping characteristics of ten heterogeneous plants at baseline gain Kp_star = 100.",
+  "plants": [
+   {
+    "plant": "P01",
+    "EA_N": 3200.0,
+    "material": "PE",
+    "scale": "lab",
+    "regime": "O-UD",
+    "zeta_cl_min": 0.151,
+    "overshoot_percent": 45.8
+   },
+   {
+    "plant": "P02",
+    "EA_N": 9600.0,
+    "material": "PET",
+    "scale": "lab",
+    "regime": "O-UD",
+    "zeta_cl_min": 0.237,
+    "overshoot_percent": 45.3
+   },
+   {
+    "plant": "P03",
+    "EA_N": 40000.0,
+    "material": "PET",
+    "scale": "lab",
+    "regime": "H-Osc",
+    "zeta_cl_min": 0.35,
+    "overshoot_percent": 28.8
+   },
+   {
+    "plant": "P04",
+    "EA_N": 50000.0,
+    "material": "PET",
+    "scale": "pilot",
+    "regime": "O-UD",
+    "zeta_cl_min": 0.201,
+    "overshoot_percent": 41.0
+   },
+   {
+    "plant": "P05",
+    "EA_N": 144000.0,
+    "material": "Paper",
+    "scale": "prod",
+    "regime": "O-UD",
+    "zeta_cl_min": 0.144,
+    "overshoot_percent": 50.1
+   },
+   {
+    "plant": "P06",
+    "EA_N": 310500.0,
+    "material": "Al",
+    "scale": "lab",
+    "regime": "H-Damp",
+    "zeta_cl_min": 0.515,
+    "overshoot_percent": 9.8
+   },
+   {
+    "plant": "P07",
+    "EA_N": 414000.0,
+    "material": "Al",
+    "scale": "pilot",
+    "regime": "H-Osc",
+    "zeta_cl_min": 0.357,
+    "overshoot_percent": 31.8
+   },
+   {
+    "plant": "P08",
+    "EA_N": 1242000.0,
+    "material": "Al",
+    "scale": "prod",
+    "regime": "O-UD",
+    "zeta_cl_min": 0.179,
+    "overshoot_percent": 55.3
+   },
+   {
+    "plant": "P09",
+    "EA_N": 351000.0,
+    "material": "Cu",
+    "scale": "lab",
+    "regime": "H-Damp",
+    "zeta_cl_min": 0.53,
+    "overshoot_percent": 16.1
+   },
+   {
+    "plant": "P10",
+    "EA_N": 351000.0,
+    "material": "Cu",
+    "scale": "pilot",
+    "regime": "O-UD",
+    "zeta_cl_min": 0.21,
+    "overshoot_percent": 51.9
+   }
+  ]
+ },
+ "matrix_structure": {
+  "notes": [
+   "Each plant has per-roller arrays R_i, J_i, f_i, L_i, b_i of length 3, while EA is scalar.",
+   "For v0 = 0.01 m/s and L approximately 1 m, transport-mode eigenvalues are approximately -0.01 1/s.",
+   "Friction-tension coupling modes scale with f/J approximately 10-40 1/s."
+  ],
+  "parameters": {
+   "L_m": {
+    "nominal": 1.0,
+    "display": "approximately 1 m",
+    "status": "Used as nominal until exact per-span arrays are supplied"
+   }
+  }
+ },
+ "controller": {
+  "notes": [
+   "Cascade PI architecture uses an outer PI controller on tension error and an inner P controller on velocity.",
+   "Kp_star sweep uses {50, 100, 200}; Kp_star = 100 is the noise-free sweet spot and Kp_star = 200 is preferred under sensor noise."
+  ]
+ }
+}
