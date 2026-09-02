@@ -1,0 +1,111 @@
+{
+  "source": "paper1_isa_v5.pdf Fig. 2 and paper1_isa_supplement_v5.pdf Table S7, Fig. S6",
+  "paper_version": "v5.0",
+  "metric": "MARE_theta_percent",
+  "supersedes": "logging_rate_v41_reference.json",
+  "notes": [
+    "v5 reports the logging-period story over THREE measurement conditions, not the v4.1 pair. Every row carries its own condition tag.",
+    "Noise-free: finer logging is always better.",
+    "Tension-only noise: still monotonic. The optimum is at the finest 1 ms setting for EVERY excitation. Tension noise penalizes coarse logging and creates NO interior optimum.",
+    "Dual-channel noise: the interior optimum appears. It is produced by the VELOCITY channel.",
+    "Never report a pooled median over the 10 plants without the slow/fast decomposition - the pooled valley represents neither sub-group.",
+    "The word 'U-shape' is not used. The paper says 'interior optimum' and, for the pooled curve, 'pooled valley'."
+  ],
+  "experiment": {
+    "plant_count": 10,
+    "Tlog_grid_ms": [1, 2, 5, 10, 20, 50, 100],
+    "controller_period_ms": 1,
+    "integration_step_ms": 1
+  },
+  "conditions": {
+    "noise_free": { "label": "Noise-free", "pct_T": 0.0, "pct_v": 0.0, "lpf_hz": null, "seeds": 1 },
+    "tension_only": { "label": "Tension-only", "pct_T": 0.3, "pct_v": 0.0, "lpf_hz": 50, "seeds": 1 },
+    "dual_channel": { "label": "Dual-channel", "pct_T": 0.3, "pct_v": 0.3, "lpf_hz": 50, "seeds": 3 }
+  },
+  "values": [
+    {"case": "noise_free", "excitation": "ET1", "Tlog_ms": 1, "MARE_theta_percent": null, "plant_count": 10, "value_status": "omitted_by_paper_near_zero_trivial_solution"},
+    {"case": "noise_free", "excitation": "ET1", "Tlog_ms": 2, "MARE_theta_percent": 0.68, "plant_count": 10, "value_status": "supplement_table_S7_NF_baseline"},
+    {"case": "noise_free", "excitation": "ET1", "Tlog_ms": 5, "MARE_theta_percent": 3.83, "plant_count": 10, "value_status": "supplement_table_S7_NF_baseline"},
+    {"case": "noise_free", "excitation": "ET1", "Tlog_ms": 10, "MARE_theta_percent": 8.05, "plant_count": 10, "value_status": "supplement_table_S7_NF_baseline"},
+    {"case": "noise_free", "excitation": "ET1", "Tlog_ms": 20, "MARE_theta_percent": 22.70, "plant_count": 10, "value_status": "supplement_table_S7_NF_baseline"},
+    {"case": "noise_free", "excitation": "ET1", "Tlog_ms": 50, "MARE_theta_percent": 58.24, "plant_count": 10, "value_status": "supplement_table_S7_NF_baseline"},
+    {"case": "noise_free", "excitation": "ET1", "Tlog_ms": 100, "MARE_theta_percent": 81.06, "plant_count": 10, "value_status": "supplement_table_S7_NF_baseline"},
+
+    {"case": "tension_only", "excitation": "E_Toggle", "Tlog_ms": 1, "MARE_theta_percent": 12.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "E_Toggle", "Tlog_ms": 2, "MARE_theta_percent": 13.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "E_Toggle", "Tlog_ms": 5, "MARE_theta_percent": 18.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "E_Toggle", "Tlog_ms": 10, "MARE_theta_percent": 22.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "E_Toggle", "Tlog_ms": 20, "MARE_theta_percent": 26.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "E_Toggle", "Tlog_ms": 50, "MARE_theta_percent": 65.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "E_Toggle", "Tlog_ms": 100, "MARE_theta_percent": 89.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+
+    {"case": "tension_only", "excitation": "ET1", "Tlog_ms": 1, "MARE_theta_percent": 13.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "ET1", "Tlog_ms": 2, "MARE_theta_percent": 15.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "ET1", "Tlog_ms": 5, "MARE_theta_percent": 22.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "ET1", "Tlog_ms": 10, "MARE_theta_percent": 33.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "ET1", "Tlog_ms": 20, "MARE_theta_percent": 37.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "ET1", "Tlog_ms": 50, "MARE_theta_percent": 65.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+    {"case": "tension_only", "excitation": "ET1", "Tlog_ms": 100, "MARE_theta_percent": 84.0, "plant_count": 10, "value_status": "supplement_fig_S6b_50Hz"},
+
+    {"case": "dual_channel", "excitation": "E_Toggle", "Tlog_ms": 5, "MARE_theta_percent": 25.8, "plant_count": 10, "value_status": "paper_text_exact_interior_optimum"},
+    {"case": "dual_channel", "excitation": "E_Toggle", "Tlog_ms": 20, "MARE_theta_percent": 42.6, "plant_count": 10, "value_status": "paper_text_exact"},
+    {"case": "dual_channel", "excitation": "E_Toggle", "Tlog_ms": 50, "MARE_theta_percent": 78.8, "plant_count": 10, "value_status": "paper_text_exact"}
+  ],
+  "series_provenance": {
+    "note": "Each plotted series comes from a SINGLE excitation, so the curve is internally consistent. The paper does not publish a complete noise-free E_Toggle series.",
+    "noise_free": { "excitation": "ET1", "source": "supplement Table S7 NF-baseline column (complete 2-100 ms series)" },
+    "tension_only": { "excitation": "E_Toggle", "source": "supplement Fig. S6(b), 50 Hz row (complete 1-100 ms series)" },
+    "dual_channel": { "excitation": "E_Toggle", "source": "paper Fig. 2(a) / Section 3.4 (three published points: 5, 20 and 50 ms)" }
+  },
+  "E_Toggle_noise_free_anchors": {
+    "note": "The only noise-free E_Toggle points the paper prints. Held here as annotations rather than as a plotted series, because two points do not make a curve.",
+    "Tlog_1ms": { "MARE_theta_percent": null, "status": "an essentially exact fit, below 0.01%; off the logarithmic axis, so Fig. 2(a) draws the noise-free curve from 2 ms onward. The point is off-scale, not missing." },
+    "Tlog_5ms": { "MARE_theta_percent": 4.84, "status": "paper_text_exact; also the power-law anchor for the tau_min/Tlog >= 5 guideline" }
+  },
+  "interior_optimum": {
+    "pooled": { "Tlog_ms": 5, "MARE_theta_percent": 25.8, "condition": "dual_channel" },
+    "per_excitation_optimum_Tlog_ms": { "ET1": 20, "ET3": null, "ET6": null, "ET3M": null, "EV1": null, "E_Toggle": null },
+    "per_excitation_note": "ET1 bottoms out at 20 ms while the other excitations settle between 5 and 10 ms. The paper does not print each one individually.",
+    "tension_only_optimum_Tlog_ms": 1,
+    "tension_only_note": "Every excitation has its tension-only optimum at the finest 1 ms setting. Tension noise creates no interior optimum."
+  },
+  "speed_decomposition": {
+    "required": true,
+    "note": "The pooled valley near 5 ms represents NEITHER sub-group. A pooled median must always be reported with this decomposition.",
+    "slow": {
+      "definition": "v0 <= 0.5 m/s",
+      "plant_count": 5,
+      "plants": ["P01", "P02", "P03", "P06", "P09"],
+      "pool_ids": ["P001", "P049", "P053", "P158", "P186"],
+      "E_Toggle_band_percent_at_Tlog_le_5ms": [11.0, 11.8],
+      "own_optimum_percent": 11.0,
+      "own_optimum_Tlog_ms": [2, 5],
+      "across_excitations_band_percent": [8.8, 11.5],
+      "note": "Low and nearly flat, essentially insensitive to the excitation."
+    },
+    "fast": {
+      "definition": "v0 >= 2.0 m/s",
+      "plant_count": 5,
+      "plants": ["P04", "P05", "P07", "P08", "P10"],
+      "pool_ids": ["P060", "P139", "P163", "P177", "P189"],
+      "plateau_percent_at_Tlog_le_5ms": [215.0, 222.0],
+      "least_bad_percent_near_50_100ms": [65.0, 80.0],
+      "EV1_best_percent": 9.0,
+      "EV1_best_Tlog_ms": 20,
+      "note": "Effectively unidentifiable at fine logging. Only EV1 keeps a usable optimum for these plants."
+    }
+  },
+  "organizing_variable": {
+    "name": "absolute velocity-noise dose sigma_v",
+    "definition": "sigma_v = pct_v * v0 / 0.30",
+    "spearman_rho_sigma_v": 0.688,
+    "spearman_rho_line_speed": 0.647,
+    "cells": 180,
+    "note": "sigma_v tracks the optimum's position slightly better than line speed does, but the two are structurally collinear and the margin is modest, so sigma_v ORGANIZES the trend rather than collapsing it."
+  },
+  "tension_noise_layers": [
+    "Under velocity-only noise the interior optimum is present for every excitation except ET1, so tension noise governs only ET1.",
+    "Where tension does matter it acts as a THRESHOLD on presence, not a dose: pct_T = 0.1% already sets ET1's interior optimum in 7 of 9 velocity-noise recipes, and 0.3% adds one more.",
+    "That residual ET1 dependence is confined to the fast, high-sigma_v plants: with tension noise removed entirely the five slow plants still show an interior optimum in all nine recipes; the five fast plants show none."
+  ]
+}

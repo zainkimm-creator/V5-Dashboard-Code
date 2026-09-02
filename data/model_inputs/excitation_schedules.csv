@@ -1,0 +1,34 @@
+excitation,campaign_group,record_index,record_duration_s,settle_s,episode_s,dt_s,Ts_s,v_ref_multiplier,edge_time_s,edge_channel,edge_direction,value_from_pct_of_setpoint,value_to_pct_of_setpoint,amplitude_rule,code_ref
+ET1,A_tension_factorial,0,7.0,2.0,5.0,0.001,0.001,1.0,2.0,span1,UP,0.0,20.0,+20% of channel setpoint,excitations3.make_ET1 / run_full_sweep
+ET3,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,1.0,2.0,span1,UP,0.0,20.0,+20% of channel setpoint (cumulative),excitations3.make_ET3 / run_full_sweep
+ET3,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,1.0,7.0,span2,UP,0.0,20.0,+20% of channel setpoint (cumulative),excitations3.make_ET3 / run_full_sweep
+ET3,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,1.0,12.0,span3,UP,0.0,20.0,+20% of channel setpoint (cumulative),excitations3.make_ET3 / run_full_sweep
+ET6,A_tension_factorial,0,32.0,2.0,5.0,0.001,0.001,1.0,2.0,span1,UP,0.0,20.0,"+20% up then back down, per span",excitations3.make_ET6 / run_full_sweep
+ET6,A_tension_factorial,0,32.0,2.0,5.0,0.001,0.001,1.0,7.0,span2,UP,0.0,20.0,"+20% up then back down, per span",excitations3.make_ET6 / run_full_sweep
+ET6,A_tension_factorial,0,32.0,2.0,5.0,0.001,0.001,1.0,12.0,span3,UP,0.0,20.0,"+20% up then back down, per span",excitations3.make_ET6 / run_full_sweep
+ET6,A_tension_factorial,0,32.0,2.0,5.0,0.001,0.001,1.0,17.0,span1,DOWN,20.0,0.0,"+20% up then back down, per span",excitations3.make_ET6 / run_full_sweep
+ET6,A_tension_factorial,0,32.0,2.0,5.0,0.001,0.001,1.0,22.0,span2,DOWN,20.0,0.0,"+20% up then back down, per span",excitations3.make_ET6 / run_full_sweep
+ET6,A_tension_factorial,0,32.0,2.0,5.0,0.001,0.001,1.0,27.0,span3,DOWN,20.0,0.0,"+20% up then back down, per span",excitations3.make_ET6 / run_full_sweep
+E_Toggle,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,1.0,2.0,span1,UP,0.0,20.0,+20% of channel setpoint (staggered toggle),excitations3.make_E_Toggle / run_full_sweep
+E_Toggle,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,1.0,7.0,span1,DOWN,20.0,0.0,+20% of channel setpoint (staggered toggle),excitations3.make_E_Toggle / run_full_sweep
+E_Toggle,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,1.0,7.0,span2,UP,0.0,20.0,+20% of channel setpoint (staggered toggle),excitations3.make_E_Toggle / run_full_sweep
+E_Toggle,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,1.0,12.0,span1,UP,0.0,20.0,+20% of channel setpoint (staggered toggle),excitations3.make_E_Toggle / run_full_sweep
+E_Toggle,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,1.0,12.0,span2,DOWN,20.0,0.0,+20% of channel setpoint (staggered toggle),excitations3.make_E_Toggle / run_full_sweep
+E_Toggle,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,1.0,12.0,span3,UP,0.0,20.0,+20% of channel setpoint (staggered toggle),excitations3.make_E_Toggle / run_full_sweep
+ET3M,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,0.5,2.0,span1,UP,0.0,20.0,+20% of channel setpoint (ET3 schedule per record),"excitations3.get_ET3M_conditions / run_full_sweep (v0_list = v0 x {0.5, 1.0, 2.0}; seed_T = base + 17*i)"
+ET3M,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,0.5,7.0,span2,UP,0.0,20.0,+20% of channel setpoint (ET3 schedule per record),"excitations3.get_ET3M_conditions / run_full_sweep (v0_list = v0 x {0.5, 1.0, 2.0}; seed_T = base + 17*i)"
+ET3M,A_tension_factorial,0,17.0,2.0,5.0,0.001,0.001,0.5,12.0,span3,UP,0.0,20.0,+20% of channel setpoint (ET3 schedule per record),"excitations3.get_ET3M_conditions / run_full_sweep (v0_list = v0 x {0.5, 1.0, 2.0}; seed_T = base + 17*i)"
+ET3M,A_tension_factorial,1,17.0,2.0,5.0,0.001,0.001,1.0,2.0,span1,UP,0.0,20.0,+20% of channel setpoint (ET3 schedule per record),"excitations3.get_ET3M_conditions / run_full_sweep (v0_list = v0 x {0.5, 1.0, 2.0}; seed_T = base + 17*i)"
+ET3M,A_tension_factorial,1,17.0,2.0,5.0,0.001,0.001,1.0,7.0,span2,UP,0.0,20.0,+20% of channel setpoint (ET3 schedule per record),"excitations3.get_ET3M_conditions / run_full_sweep (v0_list = v0 x {0.5, 1.0, 2.0}; seed_T = base + 17*i)"
+ET3M,A_tension_factorial,1,17.0,2.0,5.0,0.001,0.001,1.0,12.0,span3,UP,0.0,20.0,+20% of channel setpoint (ET3 schedule per record),"excitations3.get_ET3M_conditions / run_full_sweep (v0_list = v0 x {0.5, 1.0, 2.0}; seed_T = base + 17*i)"
+ET3M,A_tension_factorial,2,17.0,2.0,5.0,0.001,0.001,2.0,2.0,span1,UP,0.0,20.0,+20% of channel setpoint (ET3 schedule per record),"excitations3.get_ET3M_conditions / run_full_sweep (v0_list = v0 x {0.5, 1.0, 2.0}; seed_T = base + 17*i)"
+ET3M,A_tension_factorial,2,17.0,2.0,5.0,0.001,0.001,2.0,7.0,span2,UP,0.0,20.0,+20% of channel setpoint (ET3 schedule per record),"excitations3.get_ET3M_conditions / run_full_sweep (v0_list = v0 x {0.5, 1.0, 2.0}; seed_T = base + 17*i)"
+ET3M,A_tension_factorial,2,17.0,2.0,5.0,0.001,0.001,2.0,12.0,span3,UP,0.0,20.0,+20% of channel setpoint (ET3 schedule per record),"excitations3.get_ET3M_conditions / run_full_sweep (v0_list = v0 x {0.5, 1.0, 2.0}; seed_T = base + 17*i)"
+EV1,A_tension_factorial,0,12.0,2.0,5.0,0.001,0.001,1.0,2.0,v_line,UP,0.0,20.0,+20% of nominal line speed (v0 -> 1.2 v0); no tension step; outer-loop omega reference switches at the same instant; the PEM record splits at the step time,excitations3.get_EV1_midrun / run_full_sweep
+ET1,B_dual_channel,0,30.0,2.0,28.0,0.001,0.001,1.0,2.0,span1,UP,0.0,20.0,+20% of channel setpoint,"R13 run_velocity_sweep ET1_* config (t_episode=28 s, T_sim=30 s) — REQUIRED for bit-exact reproduction of the published R13/R15 velocity-noise cells; seed_v = seed_T + 100 (COMPOSITE_SEED_V_OFFSET); other five types identical to group A"
+E_Toggle,C_retuning_field_matched,0,16.0,1.0,5.0,0.001,0.001,1.0,1.0,span1,UP,0.0,20.0,+20% of channel setpoint (staggered toggle),run_phase5b SYSID_* constants (settle 1 s -> 16 s record); used by ledger campaigns 10-11
+E_Toggle,C_retuning_field_matched,0,16.0,1.0,5.0,0.001,0.001,1.0,6.0,span1,DOWN,20.0,0.0,+20% of channel setpoint (staggered toggle),run_phase5b SYSID_* constants (settle 1 s -> 16 s record); used by ledger campaigns 10-11
+E_Toggle,C_retuning_field_matched,0,16.0,1.0,5.0,0.001,0.001,1.0,6.0,span2,UP,0.0,20.0,+20% of channel setpoint (staggered toggle),run_phase5b SYSID_* constants (settle 1 s -> 16 s record); used by ledger campaigns 10-11
+E_Toggle,C_retuning_field_matched,0,16.0,1.0,5.0,0.001,0.001,1.0,11.0,span1,UP,0.0,20.0,+20% of channel setpoint (staggered toggle),run_phase5b SYSID_* constants (settle 1 s -> 16 s record); used by ledger campaigns 10-11
+E_Toggle,C_retuning_field_matched,0,16.0,1.0,5.0,0.001,0.001,1.0,11.0,span2,DOWN,20.0,0.0,+20% of channel setpoint (staggered toggle),run_phase5b SYSID_* constants (settle 1 s -> 16 s record); used by ledger campaigns 10-11
+E_Toggle,C_retuning_field_matched,0,16.0,1.0,5.0,0.001,0.001,1.0,11.0,span3,UP,0.0,20.0,+20% of channel setpoint (staggered toggle),run_phase5b SYSID_* constants (settle 1 s -> 16 s record); used by ledger campaigns 10-11

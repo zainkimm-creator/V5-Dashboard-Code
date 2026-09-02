@@ -1,0 +1,4 @@
+Dashboard : http://127.0.0.1:5205/
+Backend   : http://127.0.0.1:8021/  (health: /health, docs: /docs)
+Logs      : logs/backend.log  logs/frontend.log
+Ctrl-C to stop both.

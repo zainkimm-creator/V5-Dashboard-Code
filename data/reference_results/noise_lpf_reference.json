@@ -1,0 +1,139 @@
+{
+  "source": "paper1_isa_v5.pdf Section 3.4 and paper1_isa_supplement_v5.pdf Section S7 (Table S7, Fig. S6)",
+  "paper_version": "v5.0",
+  "usage": "comparison_only_never_dashboard_calculation_input",
+  "headline": "The anti-alias filter is a FEASIBILITY GATE, not the top influence factor. The v4.1 ranking LPF > Tlog > excitation > noise level is retired.",
+  "notes": [
+    "The gate is an over-aggressive LOW cutoff, not the absence of a filter. At 50 Hz and above identification converges without failure - and so does unfiltered logging. The failures are confined to the <= 20 Hz cutoffs.",
+    "50 Hz is the WORKING cutoff, not a lower bound to be exceeded. Raising it to 100 Hz makes things worse.",
+    "The design factors interact too strongly for any single additive ranking to hold."
+  ],
+  "feasibility_gate": {
+    "divergence_below_floor_percent": [67, 100],
+    "divergence_scope": "pooled over the six excitations",
+    "per_cutoff": [
+      { "lpf_hz": 10, "convergence_failure_percent": 100, "note": "Suppresses the oscillatory dynamics near the natural frequencies and destroys the information in the one-step residuals; the cascade inner loop adds phase lag the filter cannot track." },
+      { "lpf_hz": 20, "convergence_failure_percent": 70, "scope": "E_Toggle runs", "note": "No error value is reported at 20 Hz, deliberately - survivorship bias." },
+      { "lpf_hz": 50, "convergence_failure_percent": 0 },
+      { "lpf_hz": 100, "convergence_failure_percent": 0 },
+      { "lpf_hz": 200, "convergence_failure_percent": 0 },
+      { "lpf_hz": null, "label": "No LPF", "convergence_failure_percent": 0, "note": "Unfiltered logging converges, but at the highest error of any setting: 54% pooled median." }
+    ],
+    "note": "This threshold is a property of the dynamics, not of the estimator."
+  },
+  "main_effect_spreads_pp": {
+    "scope": "among runs that converge at a usable cutoff (>= 50 Hz), median spread",
+    "Tlog": 74,
+    "noise_amplitude": 30,
+    "excitation": 29,
+    "lpf_cutoff": 9,
+    "ranking": "Tlog (74 pp) > noise amplitude (30 pp) ~ excitation (29 pp) > cutoff (9 pp)"
+  },
+  "working_cutoff": {
+    "recommended_hz": 50,
+    "evidence_cell": { "excitation": "E_Toggle", "Tlog_ms": 20, "measurement_condition": "tension_only", "pct_T": 0.3 },
+    "MARE_at_50Hz_percent": 25.9,
+    "MARE_at_100Hz_percent": 30.8,
+    "note": "Raising the cutoff past 50 Hz brings no benefit."
+  },
+  "noise_composition_vs_cutoff": {
+    "scope": "E_Toggle at Tlog = 20 ms",
+    "tension_only_50Hz_percent": 25.9,
+    "tension_only_100Hz_percent": 30.8,
+    "dual_channel_50Hz_percent": 42.6,
+    "dual_channel_100Hz_percent": 47.0,
+    "noise_composition_effect_pp": 17,
+    "cutoff_effect_pp": 5,
+    "note": "The noise composition accounts for about +17 pp and the cutoff for about 5 pp, so the two levels are not comparable."
+  },
+  "no_filter_boundary": {
+    "safe_Tlog_ms": 50,
+    "v41_value_ms": 20,
+    "tolerance_ratio": 2.0,
+    "unfiltered_ratio_at_20ms": [2.5, 3.0],
+    "unfiltered_ratio_at_50ms": 1.2,
+    "filtered_ratio_at_20ms": [1.6, 1.8],
+    "note": "Without a filter a 20 ms cadence sits at 2.5-3.0x its noise-free error, above the 2x tolerance, so the safe no-filter boundary is 50 ms. Applying a >= 50 Hz filter brings 20 ms back inside tolerance."
+  },
+  "transition_table": {
+    "source": "supplement Table S7",
+    "definition": "ratio of the sensor-noise median error to the noise-free median error at the same Tlog",
+    "excitation": "ET1",
+    "measurement_condition": "tension_only",
+    "noise_axis": "percent of T_max",
+    "plant_count": 10,
+    "tolerance_note": "A ratio near 1x means the added noise is immaterial; 2x marks the onset of material degradation.",
+    "omitted": "Tlog = 1 ms is omitted: under NF the one-step-difference predictor is a trivial near-zero solution, so its NF baseline is ~0 and the ratio is undefined.",
+    "pct_T_grid": [0.02, 0.05, 0.1, 0.3, 0.5],
+    "unfiltered": [
+      { "Tlog_ms": 2, "NF_baseline_percent": 0.68, "ratios": { "0.02": 34.0, "0.05": 43.0, "0.1": 74.0, "0.3": 211.0, "0.5": 630.0 } },
+      { "Tlog_ms": 5, "NF_baseline_percent": 3.83, "ratios": { "0.02": 11.0, "0.05": 11.0, "0.1": 11.0, "0.3": 17.0, "0.5": 40.0 } },
+      { "Tlog_ms": 10, "NF_baseline_percent": 8.05, "ratios": { "0.02": 6.9, "0.05": 6.9, "0.1": 6.9, "0.3": 7.9, "0.5": 8.3 } },
+      { "Tlog_ms": 20, "NF_baseline_percent": 22.70, "ratios": { "0.02": 2.5, "0.05": 2.8, "0.1": 2.8, "0.3": 2.8, "0.5": 3.0 } },
+      { "Tlog_ms": 50, "NF_baseline_percent": 58.24, "ratios": { "0.02": 1.2, "0.05": 1.2, "0.1": 1.2, "0.3": 1.2, "0.5": 1.2 } },
+      { "Tlog_ms": 100, "NF_baseline_percent": 81.06, "ratios": { "0.02": 1.0, "0.05": 1.0, "0.1": 1.0, "0.3": 1.0, "0.5": 1.0 } }
+    ],
+    "lpf_50hz": [
+      { "Tlog_ms": 2, "NF_baseline_percent": 0.68, "ratios": { "0.02": 20.0, "0.05": 21.0, "0.1": 20.0, "0.3": 22.0, "0.5": 29.0 } },
+      { "Tlog_ms": 5, "NF_baseline_percent": 3.83, "ratios": { "0.02": 6.1, "0.05": 6.0, "0.1": 6.0, "0.3": 5.8, "0.5": 6.0 } },
+      { "Tlog_ms": 10, "NF_baseline_percent": 8.05, "ratios": { "0.02": 4.1, "0.05": 4.6, "0.1": 4.4, "0.3": 4.1, "0.5": 4.2 } },
+      { "Tlog_ms": 20, "NF_baseline_percent": 22.70, "ratios": { "0.02": 1.6, "0.05": 1.6, "0.1": 1.7, "0.3": 1.6, "0.5": 1.8 } },
+      { "Tlog_ms": 50, "NF_baseline_percent": 58.24, "ratios": { "0.02": 1.1, "0.05": 1.1, "0.1": 1.1, "0.3": 1.1, "0.5": 1.1 } },
+      { "Tlog_ms": 100, "NF_baseline_percent": 81.06, "ratios": { "0.02": 1.0, "0.05": 1.0, "0.1": 1.0, "0.3": 1.0, "0.5": 1.0 } }
+    ]
+  },
+  "lpf_tlog_heatmap": {
+    "source": "supplement Fig. S6",
+    "measurement_condition": "tension_only",
+    "pct_T": 0.3,
+    "plant_count": 10,
+    "seeds": 1,
+    "metric": "pooled median MARE_theta_percent",
+    "Tlog_grid_ms": [1, 2, 5, 10, 20, 50, 100],
+    "omitted_cutoff_hz": 20,
+    "omitted_reason": "most of its runs fail to converge",
+    "series": [
+      { "lpf_hz": null, "label": "No LPF", "excitation": "ET1", "values": [291, 145, 66, 64, 64, 70, 83] },
+      { "lpf_hz": null, "label": "No LPF", "excitation": "E_Toggle", "values": [156, 77, 42, 55, 54, 63, 88] },
+      { "lpf_hz": 50, "label": "50 Hz", "excitation": "ET1", "values": [13, 15, 22, 33, 37, 65, 84] },
+      { "lpf_hz": 50, "label": "50 Hz", "excitation": "E_Toggle", "values": [12, 13, 18, 22, 26, 65, 89] },
+      { "lpf_hz": 100, "label": "100 Hz", "excitation": "ET1", "values": [42, 37, 29, 42, 56, 67, 83] },
+      { "lpf_hz": 100, "label": "100 Hz", "excitation": "E_Toggle", "values": [19, 14, 19, 27, 31, 62, 89] },
+      { "lpf_hz": 200, "label": "200 Hz", "excitation": "ET1", "values": [117, 90, 46, 56, 62, 69, 83] },
+      { "lpf_hz": 200, "label": "200 Hz", "excitation": "E_Toggle", "values": [61, 44, 31, 41, 43, 61, 89] }
+    ],
+    "own_best_comparison": {
+      "ET1_at_50Hz": { "MARE_percent": 13, "Tlog_ms": 1 },
+      "ET1_at_100Hz": { "MARE_percent": 29, "Tlog_ms": 5 },
+      "note": "LPF >= 50 Hz should be read as a precondition, not 100 Hz as an optimum."
+    }
+  },
+  "cross_channel": {
+    "source": "paper Section 3.4 and supplement Section S6",
+    "excitation": "ET1",
+    "definition": "ratio of two pooled medians taken at the same cadence: the velocity-noise error over the tension-noise error, each pooled over 4 matched noise levels (0.05, 0.1, 0.3, 0.5% of full scale) x 3 seeds x 10 plants (n = 120 per channel)",
+    "v41_value": "1.7-3.1x (median, averaged over logging periods)",
+    "ratios": [
+      { "Tlog_ms": 2, "velocity_over_tension": 24.75 },
+      { "Tlog_ms": 5, "velocity_over_tension": 12.13 },
+      { "Tlog_ms": 50, "velocity_over_tension": 1.12, "note": "near parity" }
+    ],
+    "mechanism": "The corrupted velocity measurement feeds the high-gain inner loop directly, and finite-difference amplification is worst at fine sampling. The mechanism is unchanged from v4.1; the magnitude and its Tlog dependence are new.",
+    "composite": {
+      "composite_over_sum_of_channels": 0.46,
+      "Tlog_ms": 5,
+      "note": "Sub-additive interaction: the composite error lands at roughly half the sum of the two single-channel errors, and below the velocity-only error itself."
+    },
+    "extreme_low_dose": { "pct_v": 0.005, "Tlog_ms": 2, "median_MARE_percent": 143, "note": "Already catastrophic at one tenth of the lowest symmetric level." },
+    "saturation_caveat": "Individual parameter errors saturate at the optimizer bound, so in heavily degraded cells (most of the Tlog <= 5 ms grid) the reported medians and channel ratios are LOWER BOUNDS on the true degradation."
+  },
+  "noise_model": {
+    "sigma_T": "pct_T * T_max",
+    "sigma_v": "pct_v * v_max, with v_max = v0 / 0.30",
+    "grid_percent": [0.02, 0.05, 0.1, 0.3, 0.5],
+    "extended_low_velocity_grid_percent": [0.005, 0.01, 0.02],
+    "note": "Additive, zero-mean, Gaussian, per measurement channel. Noise is added to the SENSOR channels only, never in the ODE right-hand side.",
+    "bias": "Static sensor bias is NOT swept. The argument is analytic: temporal differencing in the PEM residual cancels a constant offset exactly. The v4.1-era '<1.2 pp' measured claim was removed."
+  },
+  "aliasing_caveat": "At Tlog >= 50 ms the effective sample rate falls below the 50 Hz cutoff, so the first-order EMA filter acts as noise smoothing rather than strict anti-alias. The net effect is small and mixed."
+}

@@ -1,0 +1,64 @@
+# Default project configuration.
+# Values here are placeholders until the paper-specific parameters are added.
+
+# The cascade controller executes once every T_s, held constant by ZOH between
+# updates. In all campaigns T_s coincides with the integration step
+# (T_s = dt = 1 ms), at the fast end of the 0.5-2 ms user-task periods of
+# commercial PLCs, so the multirate axis under study is the logging period alone.
+simulation:
+  dt_ms: 1
+  controller_sample_time_ms: 1
+  log_sample_time_ms: 10
+  duration_s: 10
+
+controller:
+  Kp_star_m_s_per_N: 0.00001
+  TI_s: 2.0
+  velocity_Kp_Nm_per_rad_s: 0.2
+  velocity_TI_s: 0.2
+  max_voltage_V: 24
+  feedforward_enabled: true
+
+state:
+  order:
+    - T1
+    - T2
+    - T3
+    - omega_UW
+    - omega_Nip
+    - omega_RW
+
+input:
+  order:
+    - u_UW
+    - u_Nip
+    - u_RW
+
+sysid:
+  parameters:
+    - kt_UW
+    - kt_Nip
+    - kt_RW
+    - kf_UW
+    - kf_Nip
+    - kf_RW
+    - EA
+
+validation:
+  logging_rate_ms:
+    - 1
+    - 2
+    - 5
+    - 10
+    - 20
+    - 50
+    - 100
+  excitation_profiles:
+    - ET1
+    - ET3
+    - ET6
+    - E_Toggle
+  drift_scenarios:
+    - EA
+    - f
+    - J

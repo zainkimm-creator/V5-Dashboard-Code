@@ -1,0 +1,126 @@
+{
+  "source": "paper1_isa_v5.pdf Tables 2-3 and Fig. 7; paper1_isa_supplement_v5.pdf Section S8 (Table S8, Fig. S7)",
+  "paper_version": "v5.0",
+  "usage": "comparison_only_never_dashboard_calculation_input",
+  "headline": "Zero real-plant evaluations, ~30x budget saving, no better optimum.",
+  "v41_claim_retired": "The '83% fewer evaluations (5 vs 30)' headline is retired. HGS-only is routed on being NO WORSE THAN CS-BO(30), explicitly not on superiority.",
+  "cost_function": {
+    "unchanged_from_v4": true,
+    "formula": "S = (RMSE_y/s_e)^2 + 2*(OS/s_os)^2 + (t_s/s_t)^2",
+    "s_e_N": 3.0,
+    "s_os_percent": 20.0,
+    "s_t_s": 3.0,
+    "overshoot_weight": 2,
+    "RMSE_y": "arithmetic mean of the three per-channel RMS errors (n = 3)",
+    "t_s": "2%-settling time, not t90"
+  },
+  "protocols": {
+    "field_matched": {
+      "Tlog_ms": 5,
+      "measurement_condition": "dual_channel",
+      "pct_T": 0.3,
+      "pct_v": 0.3,
+      "lpf_tension_hz": 50,
+      "lpf_velocity_hz": 50,
+      "note": "Matches the noise the plant actually sees."
+    },
+    "logging_only": {
+      "Tlog_ms": 20,
+      "measurement_condition": "tension_only",
+      "pct_T": 0.3,
+      "pct_v": 0.0,
+      "lpf_tension_hz": 100,
+      "note": "Its acquisition sits inside the 5-20 ms noise-aware window but does NOT reproduce the dual-channel noise composition of a running line."
+    },
+    "verdict": "Matching the identification protocol to the noise the plant actually sees is what turns the twin from useless to competitive. The conclusion FLIPS between the two protocols, so every stored retuning number must carry its protocol tag."
+  },
+  "plant_subset": {
+    "count": 6,
+    "plants": ["P001", "P049", "P053", "P158", "P186", "P189"],
+    "note": "The five slow-transport plants plus the fast plant P189, retained as a documented worst case.",
+    "paired_base": 60,
+    "paired_base_grid": "6 plants x 10 drift scenarios"
+  },
+  "seed_structure": {
+    "stochastic_methods": ["CS-BO(30)", "WS-BO(30)"],
+    "stochastic_seeds": 3,
+    "stochastic_n": 180,
+    "deterministic_methods": ["HGS-only", "HGS+BO(5)", "HGS+BO(10)"],
+    "deterministic_seeds": 1,
+    "deterministic_n": 60,
+    "note": "The HGS family is deterministic given the identified digital twin."
+  },
+  "methods": [
+    { "method": "CS-BO(30)", "description": "Cold-start BO, no prior model", "real_evals": 30, "n": 180, "field_matched_median_S": 0.407, "mean_S": 0.687, "p5_S": 0.109, "p95_S": 2.634 },
+    { "method": "WS-BO(30)", "description": "Warm start at SysID-mode gains", "real_evals": 30, "n": 180, "field_matched_median_S": 0.407, "mean_S": 0.689, "p5_S": 0.110, "p95_S": 2.642 },
+    { "method": "HGS-only", "description": "Hierarchical grid search on the digital twin only", "real_evals": 0, "n": 60, "field_matched_median_S": 0.357, "mean_S": 0.695, "p5_S": 0.109, "p95_S": 2.688 },
+    { "method": "HGS+BO(5)", "description": "HGS on the twin, then 5-eval BO on the plant", "real_evals": 5, "n": 60, "field_matched_median_S": 0.357, "mean_S": 0.692, "p5_S": 0.109, "p95_S": 2.688 },
+    { "method": "HGS+BO(10)", "description": "HGS on the twin, then 10-eval BO on the plant", "real_evals": 10, "n": 60, "field_matched_median_S": 0.357, "mean_S": 0.690, "p5_S": 0.109, "p95_S": 2.688 }
+  ],
+  "v41_comparison": {
+    "note": "For orientation only. v4.1 had HGS-only 0.403, HGS+BO(5) 0.342, HGS+BO(10) 0.337 - i.e. few-shot BO appeared to improve on the transfer. Under v5 all three sit at 0.357 and few-shot BO adds no further median gain.",
+    "CS_BO_30": 0.407,
+    "WS_BO_30": 0.407,
+    "HGS_only": 0.403,
+    "HGS_BO_5": 0.342,
+    "HGS_BO_10": 0.337
+  },
+  "logging_only_results": {
+    "hgs_win_rate_percent": 5,
+    "paired_comparisons": 60,
+    "hgs_median_S_paired_scope": 0.557,
+    "cs_bo_median_S_paired_scope": 0.419,
+    "note": "The pooled 180-run CS-BO median of Table 3 is 0.407; 0.419 is the paired-scope value."
+  },
+  "sim_to_real_gap_percent": {
+    "logging_only": -16.2,
+    "field_matched": -1.16
+  },
+  "win_rates": [
+    { "scope": "HGS-only vs CS-BO(30), five slow plants, paired, field-matched", "percent": 58 },
+    { "scope": "HGS-only vs CS-BO(30), P189", "percent": 0, "detail": "2.53 vs 2.49" },
+    { "scope": "HGS-only transfer under the logging-only protocol", "percent": 5 },
+    { "scope": "HGS+BO(5) vs cold-start BO, field-matched", "percent": 100, "detail": "beats cold start in every paired run" }
+  ],
+  "warm_start": {
+    "seeded_at": "the SysID-mode operating point itself, K_p* = 100 with T_I derived from theta_hat - NOT the digital twin's optimum",
+    "at_5_evals": { "WS_BO": 10.7, "CS_BO": 0.878 },
+    "at_30_evals": { "WS_BO": 0.407, "CS_BO": 0.407 },
+    "reason": "The retuned optimum sits near K_p* ~ 15, so the seeded neighborhood is roughly seven times too stiff.",
+    "note": "v4.1 said the warm start 'loses its advantage under cascade feedforward'. v5 says it gives no benefit at any budget."
+  },
+  "P189_exception": {
+    "pool_id": "P189",
+    "dashboard_id": "P10",
+    "hgs_win_rate_percent": 0,
+    "hgs_cost": 2.53,
+    "cs_bo_cost": 2.49,
+    "parameter_error_percent": 293,
+    "reidentified_at_own_best_Tlog_ms": 100,
+    "reidentified_parameter_error_percent": 64.6,
+    "reidentified_transfer_cost": 5.16,
+    "note": "Re-identifying P189 at its own best logging period cuts its parameter error from 293% to 64.6% yet DOUBLES the transfer cost and flips the sign of the sim-to-real gap. A low per-plant parameter error is neither necessary nor sufficient for good transfer."
+  },
+  "tail_risk": {
+    "source": "supplement Fig. S7",
+    "mean_p5": 0.109,
+    "mean_p95": 2.67,
+    "p95_range": [2.63, 2.69],
+    "upper_tail_outliers": "every upper-tail outlier is the single fast plant P189 under drift",
+    "lower_tail_outliers": "every lower-tail outlier is the slow plant P049",
+    "note": "Both tails are essentially method-independent. The worst-case retuning cost is set by plant heterogeneity rather than by the retuning method - the honest ceiling on the digital-twin budget saving."
+  },
+  "hgs_budget": {
+    "twin_evaluations": 2805,
+    "stages": ["coarse grid", "Latin-hypercube refinement", "fine grid", "5-evaluation BO refinement"],
+    "accounting": "surrogate evaluations, explicitly excluded from real-plant accounting",
+    "wall_time": "a few seconds on a GPU, tens of seconds on a multi-core CPU",
+    "production_downtime": "zero",
+    "transfers": "candidate gain LOCATIONS only; the twin's cost values are withheld because they would bias the real-plant surrogate"
+  },
+  "budget_saving": {
+    "factor": 30,
+    "framing": "parity at a fraction of the evaluation budget, not a performance win",
+    "per_event": "a single identification experiment followed by at most five real-plant retuning evaluations"
+  }
+}

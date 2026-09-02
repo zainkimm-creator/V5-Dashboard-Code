@@ -1,0 +1,37 @@
+{
+  "source": "paper1_isa_v5.pdf and paper1_isa_supplement_v5.pdf",
+  "paper_version": "v5.0",
+  "counts": { "total": 17, "main": 8, "supplement": 9, "v41_total": 24, "v41_main": 11, "v41_supplement": 13 },
+  "warning": "Figure numbers do NOT carry over from v4.1. Always cite v5 figures by their v5 number. The reproduction bundle figure_package_v2 is keyed to v4 figure names that no longer exist.",
+  "main": [
+    { "number": "Fig. 1", "file": "fig01_system_diagram_v5", "shows": "Three-span layout UW -> in-feeder (v0) -> out-feeder (nip) -> RW, with states, inputs, and the 7 SysID parameters" },
+    { "number": "Fig. 2", "file": "fig02_regime_sweetspot", "shows": "(a) epsilon_theta vs Tlog under three measurement conditions; (b) decomposition of the dual-channel case by line speed", "new_headline": true },
+    { "number": "Fig. 3", "file": "fig03_excitation", "shows": "Excitation comparison, NF and dual-channel SN, with off-scale 75th-percentile arrows" },
+    { "number": "Fig. 4", "file": "fig04_drift", "shows": "Drift sensitivity for EA, f, J" },
+    { "number": "Fig. 5", "file": "fig09_noise_comparison_v5", "shows": "Logged tension signal: noise-free / 1% noise unfiltered / 1% noise with 50 Hz LPF", "note": "The filename deliberately disagrees with the figure number." },
+    { "number": "Fig. 6", "file": "fig06_kp", "shows": "Kp* vs epsilon_theta under tension-only noise, split into two pooled damping groups" },
+    { "number": "Fig. 7", "file": "fig07_budget", "shows": "Retuning cost vs real-plant evaluation budget under the field-matched protocol", "new_headline": true },
+    { "number": "Fig. 8", "file": "fig08_decision_map", "shows": "Practitioner decision map" }
+  ],
+  "supplement": [
+    { "number": "Fig. S1", "file": "figS01_methodology", "shows": "Methodology overview, redrawn around the four contributions and the dual-channel campaigns" },
+    { "number": "Fig. S2", "file": "figS02_nf_powerlaw", "shows": "tau_min-normalized noise-free power law", "moved_from": "main Fig. 2 in v4.1" },
+    { "number": "Fig. S3", "file": "figS03_convergence_dual", "shows": "Dual-channel convergence/accuracy map at the 5 / 10 / 20% thresholds" },
+    { "number": "Fig. S4", "file": "figS04_identifiability", "shows": "Plant x excitation decomposition of epsilon_theta and log10 kappa(F)" },
+    { "number": "Fig. S5", "file": "figS05_xchannel", "shows": "Cross-channel comparison, tension vs velocity" },
+    { "number": "Fig. S6", "file": "figS06_lpf", "shows": "Anti-alias filter effect, ET1 vs E_Toggle" },
+    { "number": "Fig. S7", "file": "figS07_tailrisk", "shows": "Retuning tail risk" },
+    { "number": "Fig. S8", "file": "figS08_ramp_loss", "shows": "Ramp-induced information loss, EV1 and the two-operating-point variant", "new": true },
+    { "number": "Fig. S9", "file": "figS09_basin", "shows": "Deterministic tension-dose basin selection", "new": true }
+  ],
+  "v41_to_v5_map": [
+    { "v41": "Fig. 2 tlog_power_law", "v5": "Fig. S2", "fate": "moved to the supplement" },
+    { "v41": "Fig. 5 nf_vs_sn_tlog", "v5": "Fig. 2", "fate": "superseded by the new three-condition figure with speed decomposition" },
+    { "v41": "Fig. 6 sn_heatmap", "v5": null, "fate": "cut; v5's Fig. 6 is the Kp* figure" },
+    { "v41": "Fig. 7 zeta_scatter", "v5": null, "fate": "cut; zeta_CL is now only a descriptor of plant diversity" },
+    { "v41": "Fig. 8 time_response", "v5": null, "fate": "cut; v5's Fig. 8 is the decision map" },
+    { "v41": "Fig. 9 noise_comparison", "v5": "Fig. 5", "fate": "renumbered" },
+    { "v41": "Fig. 10 budget_convergence", "v5": "Fig. 7", "fate": "renumbered" },
+    { "v41": "Fig. 11 decision_map", "v5": "Fig. 8", "fate": "renumbered" }
+  ]
+}

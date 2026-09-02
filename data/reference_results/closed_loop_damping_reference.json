@@ -1,0 +1,145 @@
+{
+ "source": "paper1_isa_v5.pdf Section 3.5 and Fig. 6",
+ "paper_version": "v5.0",
+ "usage": "comparison_only_never_dashboard_calculation_input",
+ "headline": "The K_p* conclusion INVERTED. Error grows monotonically with gain in BOTH damping groups; a higher gain buys no noise robustness.",
+ "v41_claim_retired": "v4.1 said K_p* = 200 stays competitive at 18.6% because faster transients improve per-roller noise averaging. Under the weighted estimator that noise-averaging benefit does not appear.",
+ "campaign_condition": {
+  "measurement_condition": "tension_only",
+  "excitation": "E_Toggle",
+  "Tlog_ms": 20,
+  "pct_T": 0.3,
+  "pct_v": 0.0,
+  "lpf_hz": 100,
+  "note": "This is the tension-only gain-sweep campaign condition, NOT the representative dual-channel condition of Table 1 and Fig. 3 where E_Toggle reads 42.6%. The matching 50 Hz data were not rerun.",
+  "runs": 80,
+  "grid": "10 plants x 2 K_p levels {50, 200} x (1 NF + 3 SN seeds)",
+  "seed_structure": "K_p* = 50 and 200 pool three seeds per plant; the K_p* = 100 cell is the matching single-seed slice of the factorial sweep."
+ },
+ "damping_groups": {
+  "definition": "zeta_CL,min is the smallest damping ratio among the eigenmodes of the closed-loop A matrix at the nominal cascade gains.",
+  "band": [
+   0.14,
+   0.53
+  ],
+  "median": 0.22,
+  "thresholds": {
+   "H_Damp": ">= 0.5",
+   "H_Osc": "0.3 <= zeta < 0.5",
+   "O_UD": "< 0.3"
+  },
+  "membership": {
+   "O_UD": [
+    "P01",
+    "P02",
+    "P04",
+    "P05",
+    "P08",
+    "P10"
+   ],
+   "H_Osc": [
+    "P03",
+    "P07"
+   ],
+   "H_Damp": [
+    "P06",
+    "P09"
+   ]
+  },
+  "pooling": "The gain analysis pools H-Osc with O-UD, giving an 8:2 split.",
+  "group_sizes": {
+   "O_UD_plus_H_Osc": 8,
+   "H_Damp": 2
+  }
+ },
+ "gain_sweep": [
+  {
+   "kp_star": 50,
+   "O_UD_plus_H_Osc_percent": 25.199254504602187,
+   "H_Damp_percent": 59.12676512887958,
+   "pooled_percent": 32.5,
+   "group_ratio": 2.3,
+   "reference_type": "paper_figure_data",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig06_kp/data_bars.csv (Fig. 6 plotted bars)"
+  },
+  {
+   "kp_star": 100,
+   "O_UD_plus_H_Osc_percent": 26.25492806405652,
+   "H_Damp_percent": 67.27995992343594,
+   "pooled_percent": 30.8,
+   "group_ratio": 2.6,
+   "reference_type": "paper_figure_data",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig06_kp/data_bars.csv (Fig. 6 plotted bars)"
+  },
+  {
+   "kp_star": 200,
+   "O_UD_plus_H_Osc_percent": 27.345207982619634,
+   "H_Damp_percent": 80.87053258725587,
+   "pooled_percent": 32.0,
+   "group_ratio": 3.0,
+   "reference_type": "paper_figure_data",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig06_kp/data_bars.csv (Fig. 6 plotted bars)"
+  }
+ ],
+ "simpsons_paradox": {
+  "pooled_minimum_at_kp_star": 100,
+  "pooled_minimum_percent": 30.8,
+  "is_artifact": true,
+  "explanation": "The pooled median's shallow minimum at K_p* = 100 is a Simpson's-paradox composition artifact of the imbalanced 8:2 group mix. NEITHER group shares it. Do not read '100 is best' as an accuracy result.",
+  "pooled_flat_band_percent": [
+   30,
+   33
+  ]
+ },
+ "default_gain_rationale": {
+  "kp_star": 100,
+  "kept_for": "identifiability and safety, not noise averaging",
+  "EA_error_at_lowest_gain_percent": 11.5,
+  "EA_error_at_highest_gain_percent": 39.4,
+  "note": "K_p* = 100 preserves the EA estimate that the highest gains destroy."
+ },
+ "per_plant": {
+  "P08": {
+   "pool_id": "P177",
+   "kp_star_50_percent": 56.0,
+   "kp_star_200_percent": 148.0,
+   "note": "The penalty of the highest gain falls on the stiffest, fastest plant, not the most flexible web. Plotted as a clipped off-scale triangle at K_p* = 200."
+  }
+ },
+ "floors": {
+  "pooled_never_below_percent": 30,
+  "O_UD_plus_H_Osc_floor_percent": 25.2,
+  "H_Damp_always_above_percent": 59
+ },
+ "noise_free_gain_sweep": {
+  "lowest_gain_percent": 21,
+  "highest_gain_percent": 32,
+  "value_status": "approximate endpoints only; no per-gain table is published",
+  "note": "The ten-plant median error also grows steadily with gain under noise-free logs."
+ },
+ "ET1_at_default_gain": {
+  "percent": 55.9,
+  "condition": "tension-only sensor noise at 0.3% of T_max, LPF 100 Hz, Tlog = 20 ms",
+  "note": "The K_p* sweep was run with E_Toggle; this is the ET1 value at the default K_p* = 100. ET1 itself was not swept over gain. Recomputed from a v4-era 31.4% figure."
+ },
+ "overshoot": {
+  "quantified": false,
+  "note": "The gain sweep logs no transient metric, so the overshoot cost of an off-default gain is NOT quantified. A set of overshoot numbers that had no traceable source was deleted from v4.1.",
+  "commissioning_manoeuvre": {
+   "toggle_vs_single_step_ratio": 2.5,
+   "toggle_percent": 86,
+   "single_step_percent": 34,
+   "scope": "pooled noise-free median",
+   "stiffest_plant_exceeds_percent": 290,
+   "stiffest_plant": "P08 (P177)"
+  }
+ },
+ "retuned_optimum": {
+  "kp_star": 15,
+  "note": "The retuned optimum sits near K_p* ~ 15, so a warm start seeded at the SysID-mode K_p* = 100 is roughly seven times too stiff."
+ },
+ "recommendation": "K_p* = 100 remains the default, chosen for identifiability and safety. A higher gain buys no noise robustness: error grows monotonically with gain in both damping groups.",
+ "notes": [
+  "The Kp* = 100 group values are not absent from the paper: Fig. 6 plots all three gains as grouped bars. Previously null with a 'do not synthesize' note; now filled from the figure package. The 50 and 200 values there match the printed ones exactly."
+ ]
+}

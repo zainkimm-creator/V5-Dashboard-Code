@@ -1,0 +1,224 @@
+{
+ "source": "paper1_isa_v5.pdf Section 3.3 and Fig. 4",
+ "paper_version": "v5.0",
+ "usage": "comparison_only_never_dashboard_calculation_input",
+ "units": "Median SysID error MARE_theta_percent",
+ "acquisition_condition": {
+  "measurement_condition": "tension_only",
+  "excitation": "E_Toggle",
+  "Tlog_ms": 20,
+  "lpf_hz": 100,
+  "pct_T": 0.3,
+  "note": "The drift campaign keeps the tension-only acquisition at LPF 100 Hz. This is NOT the representative dual-channel condition used for the excitation table, and the two must not be compared cell by cell."
+ },
+ "campaign": {
+  "runs": 400,
+  "grid": "10 plants x 10 drift scenarios x (1 NF + 3 SN seeds)",
+  "note": "Fig. 4 plots the nine single-family legs; the tenth scenario moves EA, f and J at once."
+ },
+ "notes": [
+  "Values are reference medians only; dashboard Drift values must be freshly simulated and identified before comparison.",
+  "v5 recomputed every drift number under the operating-point-weighted PEM. The v4.1 levels (EA 15-18%) are superseded.",
+  "The physical conclusion is unchanged: reel inertia J dominates and EA is absorbed by the cascade feedforward.",
+  "J dominance follows from the extreme asymmetry, not from inertia drift as such: the moderate J leg is comparable to the friction legs.",
+  "Per-leg EA values are NOT unpublished: Fig. 4a plots all five legs, and the `family_reference` band/mean reconcile exactly with those five values (NF [24.4, 25.2] mean 24.9; SN [28.6, 31.4] mean 29.5). They are now filled from the figure package rather than left null."
+ ],
+ "EA": [
+  {
+   "drift_case": "EA -30%",
+   "drift_percent": -30.0,
+   "paper_NF_percent": 25.071369594009898,
+   "paper_SN_percent": 28.7100033046727,
+   "drift_code": "D04",
+   "reference_type": "paper_figure_data",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_a.csv (Fig. 4a plotted data)",
+   "note": "Per-leg value read from the Fig. 4a plotted data. The family band and mean in `family_reference` are the min/max/mean of exactly these five legs, which is how the band was derived."
+  },
+  {
+   "drift_case": "EA -10%",
+   "drift_percent": -10.0,
+   "paper_NF_percent": 25.205014364334605,
+   "paper_SN_percent": 29.401867317604307,
+   "drift_code": "D02",
+   "reference_type": "paper_figure_data",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_a.csv (Fig. 4a plotted data)",
+   "note": "Per-leg value read from the Fig. 4a plotted data. The family band and mean in `family_reference` are the min/max/mean of exactly these five legs, which is how the band was derived."
+  },
+  {
+   "drift_case": "EA +10%",
+   "drift_percent": 10.0,
+   "paper_NF_percent": 24.941450770040497,
+   "paper_SN_percent": 29.262467375045716,
+   "drift_code": "D01",
+   "reference_type": "paper_figure_data",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_a.csv (Fig. 4a plotted data)",
+   "note": "Per-leg value read from the Fig. 4a plotted data. The family band and mean in `family_reference` are the min/max/mean of exactly these five legs, which is how the band was derived."
+  },
+  {
+   "drift_case": "EA +30%",
+   "drift_percent": 30.0,
+   "paper_NF_percent": 24.396361047244817,
+   "paper_SN_percent": 28.55176322110343,
+   "drift_code": "D03",
+   "reference_type": "paper_figure_data",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_a.csv (Fig. 4a plotted data)",
+   "note": "Per-leg value read from the Fig. 4a plotted data. The family band and mean in `family_reference` are the min/max/mean of exactly these five legs, which is how the band was derived."
+  },
+  {
+   "drift_case": "EA +50%",
+   "drift_percent": 50.0,
+   "paper_NF_percent": 24.84371927225839,
+   "paper_SN_percent": 31.352381473624437,
+   "drift_code": "D05",
+   "reference_type": "paper_figure_data",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_a.csv (Fig. 4a plotted data)",
+   "note": "Per-leg value read from the Fig. 4a plotted data. The family band and mean in `family_reference` are the min/max/mean of exactly these five legs, which is how the band was derived."
+  }
+ ],
+ "f": [
+  {
+   "drift_case": "f -30%",
+   "drift_percent": -30.0,
+   "paper_NF_percent": 31.21907630118865,
+   "paper_SN_percent": 33.36525150171008,
+   "note": "Fig. 4b plots both series; the running text prints only the noise-free number, so the SN value comes from the figure data.",
+   "reference_type": "paper_figure_data",
+   "drift_code": "D09",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_b.csv (Fig. 4b plotted data)"
+  },
+  {
+   "drift_case": "f -15%",
+   "drift_percent": -15.0,
+   "paper_NF_percent": null,
+   "paper_SN_percent": null,
+   "note": "Fresh dashboard-only calculation. The paper shows -15% as an axis tick but publishes no standalone result.",
+   "reference_type": "unpublished_axis_tick"
+  },
+  {
+   "drift_case": "f 0%",
+   "drift_percent": 0.0,
+   "paper_NF_percent": null,
+   "paper_SN_percent": null,
+   "note": "Fresh nominal-friction dashboard calculation. The paper marks zero drift but publishes no standalone result.",
+   "reference_type": "unpublished_axis_tick"
+  },
+  {
+   "drift_case": "f +15%",
+   "drift_percent": 15.0,
+   "paper_NF_percent": null,
+   "paper_SN_percent": null,
+   "note": "Fresh dashboard-only calculation. The paper shows +15% as an axis tick but publishes no standalone result.",
+   "reference_type": "unpublished_axis_tick"
+  },
+  {
+   "drift_case": "f +30%",
+   "drift_percent": 30.0,
+   "paper_NF_percent": 27.891809264992624,
+   "paper_SN_percent": 30.461449147450843,
+   "note": "Fig. 4b plots both series; the running text prints only the noise-free number, so the SN value comes from the figure data.",
+   "reference_type": "paper_figure_data",
+   "drift_code": "D08",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_b.csv (Fig. 4b plotted data)"
+  }
+ ],
+ "J": [
+  {
+   "drift_case": "UW -30%, RW +50%",
+   "drift_percent": 50.0,
+   "drift_family": "J",
+   "drift_kind": "J_asymmetric",
+   "J_UW_percent": -30.0,
+   "J_RW_percent": 50.0,
+   "paper_NF_percent": 30.298149346300278,
+   "paper_SN_percent": 32.1688522119202,
+   "note": "Comparison reference: J moderate. Comparable to the friction legs - the J dominance comes from the extreme leg, not from inertia drift as such.",
+   "reference_type": "paper_figure_data",
+   "drift_code": "D06",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_c.csv (Fig. 4c plotted data)"
+  },
+  {
+   "drift_case": "UW -50%, RW +100%",
+   "drift_percent": 100.0,
+   "drift_family": "J",
+   "drift_kind": "J_asymmetric",
+   "J_UW_percent": -50.0,
+   "J_RW_percent": 100.0,
+   "paper_NF_percent": 47.74380979357301,
+   "paper_SN_percent": 49.95006226321934,
+   "note": "Comparison reference: J extreme. Sits +22.9 pp (NF) and +20.5 pp (SN) above the EA baseline.",
+   "reference_type": "paper_figure_data",
+   "drift_code": "D07",
+   "source": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_c.csv (Fig. 4c plotted data)"
+  }
+ ],
+ "family_reference": {
+  "EA": {
+   "legs": "+/-10%, +/-30% and +50% (five legs)",
+   "paper_NF_band_percent": [
+    24.4,
+    25.2
+   ],
+   "paper_SN_band_percent": [
+    28.6,
+    31.4
+   ],
+   "paper_NF_mean_percent": 24.9,
+   "paper_SN_mean_percent": 29.5,
+   "note": "Flat within roughly a percentage point and essentially independent of drift magnitude: the measured-tension feedforward compensates the stiffness change in real time."
+  },
+  "f": {
+   "legs": "+/-30%",
+   "paper_NF_percent_at_minus_30": 31.2,
+   "paper_NF_percent_at_plus_30": 27.9,
+   "note": "The paper prints the noise-free pair only."
+  },
+  "J": {
+   "gap_above_EA_baseline_pp": {
+    "NF": 22.9,
+    "SN": 20.5
+   },
+   "note": "J enters neither the model-based equilibrium torque nor the cascade feedforward, which leaves it the only parameter uncompensated by cascade control."
+  },
+  "combined": {
+   "scenario": "EA +20%, J -20%, f +15%",
+   "paper_NF_percent": 29.6,
+   "paper_SN_percent": null
+  }
+ },
+ "per_roller_reference": {
+  "note": "The per-roller diagnostic reads a CHANGE from the plant's own pre-drift profile, not an absolute ranking. The pre-drift profile is not flat and depends on the acquisition condition.",
+  "pre_drift_worst_roller": {
+   "tension_only_acquisition": "Nip",
+   "dual_channel_representative": "UW",
+   "note": "Under the drift campaign's tension-only acquisition the nip already carries the largest stiffness error with no drift; the unwinder does so only at the representative dual-channel condition."
+  },
+  "extreme_J_noise_free": {
+   "UW_percent": 57.6,
+   "Nip_percent": 25.9,
+   "RW_percent": null,
+   "RW_note": "Rewinder sits between UW and Nip; the paper does not print its value."
+  },
+  "extreme_J_sensor_noise": {
+   "UW_percent": 52.1,
+   "RW_percent": 54.4,
+   "note": "The localization blurs under sensor noise, so it is best read from noise-free logs."
+  },
+  "nip_change_under_extreme_J": {
+   "pre_drift_percent": 26.9,
+   "post_drift_percent": 25.9,
+   "note": "The nip stays put while UW and RW more than double."
+  }
+ },
+ "reel_radius_sensitivity": {
+  "radius_drop_percent": 15.0,
+  "inertia_drop_percent": 48.0,
+  "relation": "J_reel proportional to R^4; 0.85^4 = 0.522, a 47.8% decrease",
+  "note": "v4.1 stated 51%. Ordinary reel depletion alone drives the plant into the range where re-identification is warranted."
+ },
+ "figure_package_source": {
+  "EA": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_a.csv (Fig. 4a plotted data)",
+  "f": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_b.csv (Fig. 4b plotted data)",
+  "J": "paper1_v5_figure_package/figure_package_v5/fig04_drift/data_c.csv (Fig. 4c plotted data)",
+  "note": "Values are the plotted figure data at full precision; they round to every number the paper prints."
+ }
+}

@@ -1,0 +1,19 @@
+# GPU layer: the CUDA build of JAX, used by the Section 4 retuning campaign.
+#
+#   .venv/bin/python -m pip install -r requirements-gpu.txt
+#
+# This pulls jaxlib plus the CUDA 12 runtime (cuBLAS, cuDNN, NCCL, ...) into
+# the virtual environment - about 3 GB. It needs an NVIDIA driver on the host
+# (check with nvidia-smi); the CUDA toolkit itself does NOT need to be
+# installed system-wide, because the wheels carry their own runtime.
+#
+# run_retuning_campaign.sh puts those bundled libraries on LD_LIBRARY_PATH for
+# you. If you invoke Python directly instead, JAX will report
+# "Could not find cuda drivers on your machine" and fall back to the CPU.
+#
+# CPU-only machines can skip this file entirely and run the campaign with
+# ALLOW_CPU=1 ./run_retuning_campaign.sh   (roughly 4x slower per cell).
+#
+# Pinned to the version the campaign was verified against. For a different
+# CUDA major version use the matching extra, e.g. jax[cuda13].
+jax[cuda12]==0.10.2

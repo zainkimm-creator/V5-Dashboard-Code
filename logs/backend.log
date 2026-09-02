@@ -1,0 +1,8 @@
+INFO:     Started server process [1414110]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8021 (Press CTRL+C to quit)
+INFO:     127.0.0.1:37938 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37948 - "POST /validate/retuning HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:37954 - "POST /validate/retuning-tier1 HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:59082 - "POST /validate/closed-loop-damping HTTP/1.1" 200 OK

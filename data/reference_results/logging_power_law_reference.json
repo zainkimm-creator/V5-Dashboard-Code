@@ -1,0 +1,24 @@
+{
+  "source": "paper1_isa_supplement_v5.pdf Section S3.1 and Fig. S2",
+  "paper_version": "v5.0",
+  "model": "MARE_theta_percent = a * (Tlog/tau_min)^alpha",
+  "figure_note": "The tau_min-normalized power law is supplement Fig. S2 in v5. In the v4.1 copy it was main-text Fig. 2. Cite it as Fig. S2.",
+  "values": {
+    "noise_free": { "a": 23.5, "alpha": 0.97, "r_square": 0.79, "n": 60 },
+    "sensor_noise": { "a": null, "alpha": 0.41, "r_square": 0.11, "n": null }
+  },
+  "fit_scope": {
+    "excitation": "E_Toggle",
+    "plant_count": 10,
+    "logging_periods": "six periods above 1 ms",
+    "omitted": "the 1 ms column is omitted because its noise-free error is negligible (an essentially exact fit, < 0.01%)"
+  },
+  "guideline": {
+    "rule": "tau_min / Tlog >= 5",
+    "fitted_error_at_rule_percent": 5.0,
+    "pooled_NF_median_at_5ms_percent": 4.84,
+    "note": "Survived the v5 recomputation unchanged."
+  },
+  "sensor_noise_caveat": "The sensor-noise branch is deliberately NOT overlaid on the power law. Under tension-only sensor noise the error does not collapse onto it (fitted exponent +0.41, R^2 ~ 0.11), so an SN fit would contradict its own trend. Do not draw an SN power-law line.",
+  "tau_min_range_ms": { "min": 7.5, "min_plant": "P158", "max": 67.4, "max_plant": "P139" }
+}

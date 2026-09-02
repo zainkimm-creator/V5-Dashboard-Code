@@ -1,0 +1,33 @@
+{
+  "source": "paper1_isa_supplement_v5.pdf Section S11, Table S10",
+  "paper_version": "v5.0",
+  "grand_total_printed": false,
+  "grand_total_note": "No grand total is printed, by explicit authorial choice: each campaign is reported by its full grid decomposition, because the axes - not the sum - are what a replication needs. The 'over 15,000 runs' phrasing was removed from the abstract, introduction and conclusion. Do not sum these rows and present the total as a paper figure.",
+  "booking_rule": "A campaign is listed only where the paper reports its finding. Exploratory runs that were computed but not used are deliberately absent.",
+  "v41_totals_retired": [14040, 15210],
+  "campaign_count": 16,
+  "groups": {
+    "A": "Full-factorial sweep, sensitivity, and cross-channel campaigns",
+    "B": "Dual-channel campaigns and the retuning-protocol comparison",
+    "C": "Selective experiments, booked only where the paper reports the finding"
+  },
+  "campaigns": [
+    { "id": 1, "group": "A", "study": "Full-factorial sweep", "runs": 13020, "grid": "10 plants x 6 excitation types x 7 Tlog values x (NF + 5 noise levels x 6 LPF cutoffs)", "measurement_condition": "noise_free + tension_only", "note": "No velocity-noise axis. Shared by main-text 3.1, 3.2 and 3.4." },
+    { "id": 2, "group": "A", "study": "Parameter drift", "runs": 400, "grid": "10 plants x 10 drift scenarios x 4 noise realizations (1 NF + 3 SN seeds)", "measurement_condition": "noise_free + tension_only" },
+    { "id": 3, "group": "A", "study": "Operating-point gain sweep", "runs": 80, "grid": "10 plants x 2 Kp levels {50, 200} x (1 NF + 3 SN seeds)", "measurement_condition": "noise_free + tension_only" },
+    { "id": 4, "group": "A", "study": "Tension auxiliary noise sweep (cross-channel reference)", "runs": 390, "grid": "10 plants x ET1 x 3 Tlog values x (NF + 4 levels x 3 seeds)", "measurement_condition": "tension_only" },
+    { "id": 5, "group": "A", "study": "Velocity-channel noise sweep (cross-channel comparison)", "runs": 660, "grid": "same grid as campaign 4 applied to the velocity channel (390), plus 3 low levels pct_v in {0.005, 0.01, 0.02}% (270)", "measurement_condition": "velocity_only" },
+    { "id": 6, "group": "A", "study": "Composite noise (T+v) and control", "runs": 120, "grid": "10 plants x ET1 x Tlog = 5 ms x 2 levels x 3 seeds on both channels (60), plus a matched-seed velocity-only control (60)", "measurement_condition": "dual_channel" },
+    { "id": 7, "group": "B", "study": "Dual-channel excitation sweep, ET1 / E_Toggle", "runs": 7560, "grid": "2 excitations x 10 plants x 7 Tlog x 2 pct_T x 3 pct_v x 3 LPF_v x 3 seeds", "measurement_condition": "dual_channel" },
+    { "id": 8, "group": "B", "study": "Dual-channel excitation sweep, ET3 / ET6 / ET3M / EV1", "runs": 15120, "grid": "4 excitations x 10 plants x 7 Tlog x 2 pct_T x 3 pct_v x 3 LPF_v x 3 seeds", "measurement_condition": "dual_channel" },
+    { "id": 9, "group": "B", "study": "Tension-dose extension (pct_T = 0.1%)", "runs": 3780, "grid": "{ET1, E_Toggle} x 10 plants x 7 Tlog x pct_T = 0.1% x 3 pct_v x 3 LPF_v x 3 seeds", "measurement_condition": "dual_channel" },
+    { "id": 10, "group": "B", "study": "Logging-only retuning (baseline)", "runs": 540, "grid": "(2x3 + 3x1) x 60; 5 methods x 6-plant subset x 10 drift scenarios", "measurement_condition": "tension_only", "protocol": "logging_only" },
+    { "id": 11, "group": "B", "study": "Field-matched retuning", "runs": 540, "grid": "(2x3 + 3x1) x 60; 5 methods x 6-plant subset x 10 drift scenarios", "measurement_condition": "dual_channel", "protocol": "field_matched" },
+    { "id": 12, "group": "C", "study": "Two-operating-point excitation, v0-anchored", "runs": 3780, "grid": "EV1_2OP x 10 plants x 7 Tlog x 18 noise recipes (2 pct_T x 3 pct_v x 3 LPF_v) x 3 seeds", "measurement_condition": "dual_channel", "note": "Speed pair (v0, 2.5 v0) for v0 <= 1.0 m/s and (v0/2.5, v0) above it, so the nominal operating point is always visited. No ramp axis." },
+    { "id": 13, "group": "C", "study": "Two-operating-point excitation, capped pair, with ramp sub-sweep", "runs": 5670, "grid": "body 3780 + ramp sub-sweep 1890", "measurement_condition": "dual_channel", "note": "Above 1.0 m/s the pair saturates at the line-speed cap and collapses to (1.0, 2.5) m/s, so the nominal v0 is never visited." },
+    { "id": 14, "group": "C", "study": "EV1 x ramp information-loss sweep", "runs": 1890, "grid": "EV1 x 10 plants x 7 Tlog x 3 ramp times {0.05, 0.1, 0.2} s x 3 pct_v x 3 seeds (pct_T = 0.3%, LPF_v = 50 Hz fixed)", "measurement_condition": "dual_channel" },
+    { "id": 15, "group": "C", "study": "Basin determinism (seeds 0-23)", "runs": 5760, "grid": "{ET1, E_Toggle} x 10 plants x 3 Tlog {5, 10, 20} ms x 2 pct_v x 2 pct_T x 24 seeds (LPF 50/50)", "measurement_condition": "dual_channel" },
+    { "id": 16, "group": "C", "study": "P189 addendum (Tlog = 100 ms retuning)", "runs": 90, "grid": "(2x3 + 3x1) x 10; 5 retuning methods x 1 plant (P189) x 10 drift scenarios", "measurement_condition": "dual_channel" }
+  ],
+  "footer": "All campaigns share the same three-span, physics-consistent cascade R2R simulator and the same ten-plant set drawn from the 204-plant pool. The retuning campaigns use a 6-plant subset and campaign 16 a single plant. The 30 noise-free baseline runs of campaign 5 deterministically reproduce those of campaign 4 bit-for-bit and are retained as an executed wiring-regression gate. Method-internal digital-twin evaluations - the ~2,805-point hierarchical grid search - run on the identified surrogate rather than on the plant and are surrogate evaluations, not plant runs."
+}

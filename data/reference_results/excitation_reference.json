@@ -1,0 +1,65 @@
+{
+  "source": "paper1_isa_v5.pdf Table 1 and Fig. 3",
+  "paper_version": "v5.0",
+  "units": "MARE_theta_percent",
+  "metric": "median epsilon_bar_theta across the 10-plant pool",
+  "notes": [
+    "NF and SN values are paper/reference values used only for comparison.",
+    "Dashboard values must be calculated independently and must not be forced toward these values.",
+    "v5 recomputed every number under the operating-point-weighted PEM on the 6-channel logged state. These values are NOT interchangeable with the v4.1 table.",
+    "The SN column changed measurement condition: v4.1 SN was tension-only 0.3% at LPF 100 Hz; v5 SN is dual-channel 0.3%/0.3% at LPF 50 Hz. The two tables are not comparable cell by cell.",
+    "The SN column is a fixed-cadence comparison at T_log = 20 ms. Each excitation's own optimum falls at a different logging period, so this ranking is condition-dependent, not absolute.",
+    "At the fixed 20 ms cadence the tension family compresses into a 42.6-46.7% cluster in which ET1 is NOT uniquely worst. Compared at each excitation's own optimum, the multichannel toggle leads ET1 by nearly 19 pp.",
+    "ET3M is a single joint three-condition fit through the multi-condition cost, not an average of three separate per-operating-point fits."
+  ],
+  "conditions": {
+    "NF": {
+      "measurement_condition": "noise_free",
+      "Tlog_ms": 5,
+      "seeds": 1,
+      "plant_count": 10,
+      "aggregation": "10-plant pooled median at a single seed"
+    },
+    "SN": {
+      "measurement_condition": "dual_channel",
+      "Tlog_ms": 20,
+      "pct_T": 0.3,
+      "pct_v": 0.3,
+      "lpf_hz": 50,
+      "seeds": 3,
+      "plant_count": 10,
+      "aggregation": "pooled median over 10 plants x 3 seeds"
+    }
+  },
+  "strategies": {
+    "E_Toggle": { "NF": 4.8, "SN": 42.6, "channels": 3, "SN_p75_offscale": 152.0 },
+    "ET6": { "NF": 4.6, "SN": 42.9, "channels": 3, "SN_p75_offscale": 184.0 },
+    "ET3": { "NF": 4.6, "SN": 42.9, "channels": 3, "SN_p75_offscale": 183.0 },
+    "ET3M": { "NF": 4.9, "SN": 46.7, "channels": 3, "SN_p75_offscale": 170.0 },
+    "ET1": { "NF": 3.8, "SN": 44.4, "channels": 1, "SN_p75_offscale": 277.0 },
+    "EV1": { "NF": 2.2, "SN": 26.7, "channels": 0, "SN_p75_offscale": null }
+  },
+  "spread": {
+    "noise_free_spread_pp": 2.69,
+    "multichannel_spread_pp": 0.29,
+    "note": "v4.1 reported 1.3 pp; the v5 noise-free spread across all six types is 2.69 pp, with the multichannel types within 0.29 pp of one another and EV1 distinctly the lowest."
+  },
+  "own_optimum_notes": [
+    "EV1 attains the lowest error under noise by a wide margin (26.7% against a 42.6-46.7% tension-family cluster).",
+    "Under dual-channel noise ET1's optimum sits at 20 ms while the other excitations settle between 5 and 10 ms.",
+    "ET6's apparent 5 ms optimum is fragile to the noise realization.",
+    "The extra operating points of ET3M do not by themselves improve identification accuracy in this three-span study; where they help, the gain is confined to slow-transport plants."
+  ],
+  "conditioning_ranking": {
+    "source": "supplement Table S6",
+    "note": "kappa(F) is on the weighted-residual scale F = sum_k J_k^T W^2 J_k, so only the ordering is interpretable. Accuracy is the fraction of runs with error < 5% over 10 plants and the five logging periods Tlog <= 20 ms (n = 50 per excitation, single seed).",
+    "rows": [
+      { "excitation": "EV1", "conditioning": "best", "NF_accuracy_rate_percent": 66 },
+      { "excitation": "E_Toggle", "conditioning": "best", "NF_accuracy_rate_percent": 52 },
+      { "excitation": "ET3", "conditioning": "intermediate", "NF_accuracy_rate_percent": 49 },
+      { "excitation": "ET3M", "conditioning": "intermediate", "NF_accuracy_rate_percent": 49 },
+      { "excitation": "ET6", "conditioning": "intermediate", "NF_accuracy_rate_percent": 49 },
+      { "excitation": "ET1", "conditioning": "worst", "NF_accuracy_rate_percent": 5.5 }
+    ]
+  }
+}

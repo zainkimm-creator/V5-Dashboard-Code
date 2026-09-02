@@ -1,0 +1,6 @@
+fastapi>=0.115
+uvicorn[standard]>=0.34
+python-multipart>=0.0.20
+xlsxwriter>=3.2
+numpy>=2.0
+scipy>=1.14
